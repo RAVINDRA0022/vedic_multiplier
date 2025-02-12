@@ -1,0 +1,39 @@
+module tb_vedic_multiplier_32bit;
+    reg [31:0] A, B;
+    wire [63:0] S;
+
+    vedic_multiplier_32bit UUT (
+        .A(A),
+        .B(B),
+        .S(S)
+    );
+
+    initial begin
+        $monitor("A = %h, B = %h, S = %h", A, B, S);
+
+        A = 32'h0000_0001;
+        B = 32'h0000_0001;
+        #10;
+
+        A = 32'h0000_0002;
+        B = 32'h0000_0002;
+        #10;
+
+        A = 32'h0000_00FF;
+        B = 32'h0000_00FF;
+        #10;
+
+        A = 32'h0000_FFFF;
+        B = 32'h0000_FFFF;
+        #10;
+        A = 32'h1234_5678;
+        B = 32'h8765_4321;
+        #10;
+
+        A = 32'hFFFF_FFFF;
+        B = 32'hFFFF_FFFF;
+        #10;
+
+        $stop;
+    end
+endmodule
